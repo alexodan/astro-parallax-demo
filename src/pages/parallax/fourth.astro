@@ -4,6 +4,7 @@ import AirBalloonCard from "../../components/fourth/AirBalloonCard.astro";
 import Navbar from "../../components/fourth/Navbar.astro";
 import { cards } from "../../constants/cards";
 ---
+
 <script>
   const observerOptions = {
     root: null,
@@ -43,7 +44,10 @@ import { cards } from "../../constants/cards";
         <button class="btn">Order now!</button>
       </div>
       <div class="right">
-        <img src="/assets/p1/air-balloon1.png" alt="a hot air balloon" />
+        <img
+          src="/astro-parallax-demo/assets/p1/air-balloon1.png"
+          alt="a hot air balloon"
+        />
       </div>
     </section>
     <!-- TWO -->
@@ -52,7 +56,7 @@ import { cards } from "../../constants/cards";
         <div class:list={["topLeft", "fadeIn"]}>
           <img
             loading="lazy"
-            src="/assets/p2/left2.jpg"
+            src="/astro-parallax-demo/assets/p2/left2.jpg"
             alt="photo of many air balloons"
           />
         </div>
@@ -93,7 +97,7 @@ import { cards } from "../../constants/cards";
         <div class:list={["bottomRight", "fadeIn"]}>
           <img
             loading="lazy"
-            src="/assets/p2/right2.jpg"
+            src="/astro-parallax-demo/assets/p2/right2.jpg"
             alt="photo of an air balloon deflating"
           />
         </div>
@@ -101,9 +105,7 @@ import { cards } from "../../constants/cards";
     </section>
     <!-- THREE -->
     <section class="section3">
-      <h2 class:list={["fadeIn"]}>
-        Flight vouchers
-      </h2>
+      <h2 class:list={["fadeIn"]}>Flight vouchers</h2>
       <p class:list={["fadeIn"]}>
         Some text about how awesome hot air balloons are, probably
       </p>

@@ -2,13 +2,10 @@
 const { threshold, id, title, description } = Astro.props;
 ---
 
-<figure
-  class={`card fadeIn`}
-  style={`--push-down: ${threshold * 3}px;`}
->
+<figure class={`card fadeIn`} style={`--push-down: ${threshold * 3}px;`}>
   <img
     class="img"
-    src={`/assets/p4/card${id}.png`}
+    src={`/astro-parallax-demo/assets/p4/card${id}.png`}
     alt={`hot air balloon number ${id}`}
   />
   <figcaption>
