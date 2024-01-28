@@ -1,0 +1,60 @@
+---
+const { threshold, id, title, description } = Astro.props;
+---
+
+<figure
+  class={`card fadeIn`}
+  style={`--push-down: ${threshold * 3}px;`}
+>
+  <img
+    class="img"
+    src={`/assets/p4/card${id}.png`}
+    alt={`hot air balloon number ${id}`}
+  />
+  <figcaption>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </figcaption>
+</figure>
+
+<style lang="scss">
+  :root {
+    --push-down: 0;
+  }
+
+  // Styles
+  .card {
+    border-radius: 10px;
+    max-width: 240px;
+    margin: 0;
+    // Animation
+    transform: translateY(var(--push-down));
+    &.fadeIn {
+      transition-property: transform, opacity;
+      transition-duration: 0.8s;
+      transition-timing-function: ease-out;
+    }
+    &.show {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
+  .img {
+    width: 100%;
+    height: 300px;
+  }
+
+  figcaption {
+    background-color: rgb(131 90 36 / 80%);
+    padding: 20px;
+    h3 {
+      text-transform: uppercase;
+      margin: 0;
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  }
+</style>

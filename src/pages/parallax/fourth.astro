@@ -1,0 +1,311 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AirBalloonCard from "../../components/fourth/AirBalloonCard.astro";
+import Navbar from "../../components/fourth/Navbar.astro";
+import { cards } from "../../constants/cards";
+---
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px 0px 0px 0px",
+    threshold: 0.3,
+  };
+
+  const obs = new window.IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      (entry.target as HTMLElement).classList.add("show");
+    }
+  }, observerOptions);
+
+  document.querySelectorAll(".fadeIn").forEach((el) => {
+    obs.observe(el);
+  });
+</script>
+
+<Layout title="First parallax">
+  <header>
+    <Navbar />
+  </header>
+  <main>
+    <section class="one">
+      <div class="left">
+        <h1 role="heading" aria-level={1}>
+          Air
+          <span class="uNewline"></span>
+          balloon
+          <span class="uNewline"></span>
+          flights
+        </h1>
+        <p>
+          Some text saying something about how awesome air balloon flights are
+          and that you should try it sometime, or maybe something else idk
+        </p>
+        <button class="btn">Order now!</button>
+      </div>
+      <div class="right">
+        <img src="/assets/p1/air-balloon1.png" alt="a hot air balloon" />
+      </div>
+    </section>
+    <!-- TWO -->
+    <section class="two">
+      <div class="top">
+        <div class:list={["topLeft", "fadeIn"]}>
+          <img
+            loading="lazy"
+            src="/assets/p2/left2.jpg"
+            alt="photo of many air balloons"
+          />
+        </div>
+        <div>
+          <h2 role="heading" aria-level={2} class:list={["topRight", "fadeIn"]}>
+            Air
+            <span class="uNewline"></span>
+            balloons
+            <span class="uNewline"></span>
+            festivals
+          </h2>
+          <p class:list={["topRight", "fadeIn"]}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            rerum minima illo fuga, beatae sunt voluptates consequatur totam
+            laudantium.
+          </p>
+        </div>
+      </div>
+      <div class="bottom">
+        <div>
+          <h2
+            role="heading"
+            aria-level={2}
+            class:list={["bottomLeft", "fadeIn"]}
+          >
+            About
+            <span class="uNewline"></span>
+            air balloons
+            <span class="uNewline"></span>
+            safety
+          </h2>
+          <p class:list={["bottomLeft", "fadeIn"]}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+            rerum minima illo fuga, beatae sunt voluptates consequatur totam
+            laudantium.
+          </p>
+        </div>
+        <div class:list={["bottomRight", "fadeIn"]}>
+          <img
+            loading="lazy"
+            src="/assets/p2/right2.jpg"
+            alt="photo of an air balloon deflating"
+          />
+        </div>
+      </div>
+    </section>
+    <!-- THREE -->
+    <section class="section3">
+      <h2 class:list={["fadeIn"]}>
+        Flight vouchers
+      </h2>
+      <p class:list={["fadeIn"]}>
+        Some text about how awesome hot air balloons are, probably
+      </p>
+      <div class="section3Gallery">
+        {
+          cards.map((c, idx) => (
+            <AirBalloonCard key={idx + 1} id={idx + 1} {...c} />
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style lang="scss">
+  main {
+    margin: 0 auto;
+    perspective: 300px;
+    overflow-y: scroll;
+    height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  // ONE
+  .one {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 30px;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    transform-style: preserve-3d;
+    background: linear-gradient(0deg, rgb(87 117 173) 0%, rgb(46 115 193) 100%);
+  }
+
+  .left {
+    transform-origin: right;
+    transform: translateZ(60px) scale(0.8);
+    grid-area: 1 / 1 / 1 / 1;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 20px;
+
+    h1,
+    p {
+      text-align: right;
+      font-size: 1.3rem;
+      max-width: 40ch;
+      margin: 0;
+    }
+    h1 {
+      text-transform: uppercase;
+      font-size: 4.8vw;
+      line-height: 1;
+    }
+    .uNewline {
+      display: block;
+    }
+  }
+
+  .right {
+    grid-area: 1 / 2 / 1 / 2;
+
+    img {
+      width: 540px;
+      margin-bottom: 100px;
+    }
+  }
+
+  // TWO
+  // Animation
+  .two {
+    .topLeft,
+    .bottomLeft {
+      transform: translateX(-200px);
+    }
+    .topRight,
+    .bottomRight {
+      transform: translateX(200px);
+    }
+    .topRight,
+    .bottomLeft {
+      transition-delay: 0.5s;
+    }
+    p.topRight,
+    p.bottomLeft {
+      transition-delay: 0.9s;
+    }
+    .fadeIn {
+      opacity: 0;
+      transition-duration: 0.2s;
+      transition-property: transform, opacity;
+      transition-timing-function: ease-in-out;
+    }
+    .show {
+      transition-duration: 1s;
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+
+  // General Styles
+  .two {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    gap: 30px;
+    justify-content: center;
+    color: white;
+    padding: 10vw 0;
+    background: linear-gradient(180deg, rgb(87 117 173), rgb(42, 96, 156) 100%);
+  }
+
+  .top {
+    display: flex;
+    &Left {
+      flex: 6;
+      display: flex;
+      justify-content: end;
+    }
+    &Right {
+      flex: 4;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    text-align: right;
+    &Left {
+      flex: 4;
+    }
+    &Right {
+      flex: 6;
+    }
+  }
+
+  .top,
+  .bottom {
+    gap: 30px;
+    img {
+      border-radius: 6px;
+      width: max(30vw, 400px);
+    }
+    h2 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    p {
+      font-size: 1.1rem;
+      max-width: 32ch;
+    }
+  }
+
+  .uNewline {
+    display: block;
+  }
+
+  // THREE
+  .section3 {
+    overflow-y: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(
+      0deg,
+      rgb(87 117 173) 0%,
+      rgb(42, 96, 156) 100%
+    );
+    background-size: cover;
+    color: white;
+
+    h2 {
+      text-transform: uppercase;
+      font-size: 3.2vw;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+    }
+
+    &Gallery {
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+    }
+
+    // Animation
+    .fadeIn {
+      opacity: 0;
+      transition-property: transform, opacity;
+      transition-duration: 0.5s;
+      transition-timing-function: ease-out;
+    }
+
+    .show {
+      transform: none;
+      opacity: 1;
+    }
+  }
+</style>

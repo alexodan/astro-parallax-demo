@@ -1,0 +1,45 @@
+<nav class="navbar">
+  <a href="/" class="navbarLogo"> Home</a>
+  <ul class="navbarMenu">
+    <li class="navbarMenuItem">
+      <a href="/">About</a>
+    </li>
+    <li class="navbarMenuItem">
+      <a href="/">Products & Offering</a>
+    </li>
+    <li class="navbarMenuItem">
+      <a href="/">Space & Design</a>
+    </li>
+    <li class="navbarMenuItem">
+      <a href="/">-</a>
+    </li>
+    <li class="navbarMenuItem">
+      <a href="/">English / Spanish</a>
+    </li>
+  </ul>
+</nav>
+
+<style lang="scss">
+  .navbar {
+    display: flex;
+    height: 70px;
+    padding: 10px 100px;
+    align-items: center;
+
+    &Logo {
+      flex: 1;
+    }
+
+    &Menu {
+      list-style: none;
+      margin: 0;
+      display: flex;
+      flex: 2;
+      justify-content: space-around;
+
+      &Item {
+        margin: 0;
+      }
+    }
+  }
+</style>
